@@ -35,7 +35,7 @@ public class Notebook {
     }
 
     public String getColor() {
-        return color;
+        return color.toLowerCase();
     }
 
     public void setColor(String color) {
