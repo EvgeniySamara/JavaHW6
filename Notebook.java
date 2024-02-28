@@ -7,6 +7,8 @@ public class Notebook {
     private String color;
     private String model;
     private int price;
+    private int ram;
+    private String storage;
 
 
     public  Notebook(String name, String color, int price, String model) {
@@ -14,6 +16,14 @@ public class Notebook {
         this.color = color;
         this.price = price;
         this.model = model;        
+    }
+
+    public String getStorage() {
+        return storage;
+    }
+
+    public void setStorage(String storage) {
+        this.storage = storage;
     }
 
     public String getName() {
@@ -36,15 +46,23 @@ public class Notebook {
         return price;
     }
 
-    public void setPrice(int age) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
-    public int getModel() {
+    public int getRam() {
+        return ram;
+    }
+
+    public void setRam(int ram) {
+        this.ram = ram;
+    }
+
+    public String getModel() {
         return model;
     }
 
-    public void setModel(String age) {
+    public void setModel(String model) {
         this.model = model;
     }
 
@@ -69,6 +87,6 @@ public class Notebook {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, color, age);
+        return Objects.hash(name, color, model);
     }
 }
