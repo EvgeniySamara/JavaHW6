@@ -9,10 +9,11 @@ public class Notebook {
     private int price;
 
 
-    public  Notebook(String name, String color, int age) {
+    public  Notebook(String name, String color, int price, String model) {
         this.name = name;
         this.color = color;
-        this.age = age;
+        this.price = price;
+        this.model = model;        
     }
 
     public String getName() {
@@ -31,32 +32,40 @@ public class Notebook {
         this.color = color;
     }
 
-    public int getAge() {
-        return age;
+    public int getPrice() {
+        return price;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setPrice(int age) {
+        this.price = price;
+    }
+
+    public int getModel() {
+        return model;
+    }
+
+    public void setModel(String age) {
+        this.model = model;
     }
 
     @Override
     public String toString() {
-        return "Cat{" +
-                "имя='" + name + '\'' +
+        return "Notebook{" +
+                "назавание='" + name + '\'' +
                 ", цвет='" + color + '\'' +
-                ", возраст=" + age +
+                ", цена=" + price +
                 '}';
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Cat cat = (Cat) obj;
-        return cat.name.equals(name) &&
-                cat.age == age &&
-                cat.color.equals(color);
-    }
+    // @Override
+    // public boolean equals(Object obj) {
+    //     if (this == obj) return true;
+    //     if (obj == null || getClass() != obj.getClass()) return false;
+    //     Notebook cat = (Cat) obj;
+    //     return cat.name.equals(name) &&
+    //             cat.price == price &&
+    //             cat.color.equals(color);
+    //}
 
     @Override
     public int hashCode() {
