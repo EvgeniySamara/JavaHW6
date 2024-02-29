@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+import javax.print.DocFlavor.STRING;
+
 public class prog {
 
     public static void main(String[] args) {
@@ -35,7 +37,8 @@ public class prog {
        filterlist.put(1,"Цена");
        filterlist.put(2,"Объем ОЗУ в Гб");
        filterlist.put(3,"Вид накопителя HDD/SDD"); 
-       filterlist.put(4,"Цвет Black/White");             
+       filterlist.put(4,"Цвет Black/White");   
+       filterlist.put(5,"Сложный фильтр");                  
 
        System.out.println("Имеющиеся фильтры:");       
         for (Map.Entry<Integer, String> entry : filterlist.entrySet()) {
@@ -58,7 +61,7 @@ public class prog {
             }      
         }
         else if (ch ==1){
-            System.out.println("Введите минимальное значение критерия фильтрации:");
+            System.out.println("Введите минимальное значение цены:");
             int chvalue = console.nextInt(); 
          
 
@@ -70,7 +73,110 @@ public class prog {
                 }
             }      
         }
+        else if (ch ==2){
+            System.out.println("Введите минимальное значение ОЗУ:");
+            int chvalue = console.nextInt(); 
+         
 
+            for (Notebook notebook : compSet) {
+                int ram = notebook.getRam();
+
+                if (ram>chvalue) {
+                    System.out.println(notebook);
+                }
+            }      
+        }
+        if (ch ==3){
+            System.out.println("Введите вид накопителя (HDD или SDD):");
+            String chvalue = console2.nextLine(); 
+            chvalue = chvalue.toLowerCase();
+
+            for (Notebook notebook : compSet) {
+                if (chvalue.equals(notebook.getStorage())) {
+                    System.out.println(notebook);
+                }
+            }      
+        }
+        if (ch ==5){
+            System.out.println("Введите требуемые занчения фильтров. Если фильтр не нужен нажмите enter:");
+
+
+            HashMap<Integer,String> userfilter = new HashMap<>();
+            for (Map.Entry<Integer, String> entry : filterlist.entrySet()) {
+                Integer key =  entry.getKey();
+                if (key<5){
+                System.out.println(entry.getValue());             
+                String fvalue = console2.nextLine(); 
+                fvalue = fvalue.toLowerCase();
+                userfilter.put(key, fvalue);
+                }
+            }     
+
+             for (Notebook notebook : compSet) {
+                boolean Fl = true;
+                for (Map.Entry<Integer, String> entry : userfilter.entrySet()) 
+                {
+             
+                int key = entry.getKey();
+                int fvalue = 0;
+                String fvalue2 =""; 
+
+            
+                if (key==1 || key ==2 )
+                {
+                    fvalue2 = entry.getValue();
+                    if (fvalue2!="")  fvalue = Integer.parseInt(entry.getValue());
+                }
+                else {
+                    fvalue2 = entry.getValue();
+                    // System.out.println(key);                    
+                    // System.out.println(fvalue2);
+                }
+
+                switch (key) {
+                    case  1:
+                    if (fvalue>0)
+                    {
+                    int price = notebook.getPrice();
+                    if (price < fvalue) Fl = false;                  
+                    }
+                    break;
+                    case  2:
+                    if (fvalue>0)
+                    {
+                    int ram = notebook.getRam();
+                    if (ram<fvalue) Fl = false;
+                    }                  
+                    break;                    
+                    case  3:
+                    if (fvalue2!="")
+                    {
+                    
+                    if (fvalue2.equals(notebook.getStorage())) 
+                    {}
+                    else  {
+                        Fl = false;
+                        System.out.println(fvalue2+"  "+notebook.getStorage());
+                    
+                    }    
+                    }               
+                    break;  
+                    case  4:
+                    if (fvalue2!="")
+                    {
+                    if (fvalue2.equals(notebook.getColor())) {}
+                    else  Fl = false;  
+                    }                 
+                    break;                      
+                }
+
+               
+                
+
+                }
+                if (Fl) System.out.println(notebook);
+            }      
+        }
     }
 
 }

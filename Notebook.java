@@ -19,7 +19,7 @@ public class Notebook {
     }
 
     public String getStorage() {
-        return storage;
+        return storage.toLowerCase();
     }
 
     public void setStorage(String storage) {
@@ -72,6 +72,8 @@ public class Notebook {
                 "назавание='" + name + '\'' +
                 ", цвет='" + color + '\'' +
                 ", цена=" + price +
+                ", ОЗУ=" + ram +   
+                ", накопитель=" + storage +                    
                 '}';
     }
 
